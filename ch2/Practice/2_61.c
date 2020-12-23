@@ -10,30 +10,40 @@
 
 typedef unsigned char* byte_pointer;
 
-/*method 1*/
-int method_1(int x){
-    int mask_1 = 0;
-    int mask_2 = 0;
-    int mask_3 = 0xff;
-    int mask_4 = 0xff;
+int A(int x){
+    return ! ~x;
+}
 
-    int case_1 = x ^ mask_1;
-    int case_2 = x ^ ~mask_2;
-    int case_3 = x ^ ~mask_3;
-    int case_4 = x ^ mask_4;
-    
-    if(case_1 | case_2 | case_3 | case_4)
+int B(int x){
+    return !x;
+}
+
+int C(int x){
+    return A(x | ~0xff);
+}
+
+int D(int x){
+    return B(x & 0xff << ((sizeof(int)-1) << 3) );
+}
+
+int slove(int x){
+    if(A(x) | B(x) | C(x) | D(x))
         return 1;
     else
         return 0;
 }
 
 int main(){
-    printf("method 1: \n");
-    printf("%x\n", method_1(0xffffff));
-    printf("%x\n", method_1(0x0));
-    printf("%x\n", method_1(0x1234ff));
-    printf("%x\n", method_1(0x1234));
-    printf("%x\n", method_1(0x12340f));
+    printf("Positive Result: \n");
+    printf("%d\n", slove(~0)); // all 1
+    printf("%d\n", slove(0)); // all 0
+    printf("%d\n", slove(0x1234ff));
+    printf("%d\n", slove(0x1234));
+    printf("%d\n", D(0));
+
+    printf("Negtive Result: \n");
+    printf("%d\n", B(0x1234ff));
+    printf("%d\n", C(0x1234));
+    printf("%d\n", D(~0));
     return 0;
 }
