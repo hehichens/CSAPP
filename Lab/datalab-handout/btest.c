@@ -431,23 +431,23 @@ static int run_tests()
     printf("Score\tRating\tErrors\tFunction\n");
 
     for (i = 0; test_set[i].solution_funct; i++) {
-	int terrors;
-	double tscore;
-	double tpoints;
-	if (!test_fname || strcmp(test_set[i].name,test_fname) == 0) {
-	    int rating = global_rating ? global_rating : test_set[i].rating;
-	    terrors = test_function(&test_set[i]);
-	    errors += terrors;
-	    tscore = terrors == 0 ? 1.0 : 0.0;
-	    tpoints = rating * tscore;
-	    points += tpoints;
-	    max_points += rating;
+		int terrors;
+		double tscore;
+		double tpoints;
+		if (!test_fname || strcmp(test_set[i].name,test_fname) == 0) {
+			int rating = global_rating ? global_rating : test_set[i].rating;
+			terrors = test_function(&test_set[i]);
+			errors += terrors;
+			tscore = terrors == 0 ? 1.0 : 0.0;
+			tpoints = rating * tscore;
+			points += tpoints;
+			max_points += rating;
 
-	    if (grade || terrors < 1)
-		printf(" %.0f\t%d\t%d\t%s\n", 
-		       tpoints, rating, terrors, test_set[i].name);
+			if (grade || terrors < 1)
+			printf(" %.0f\t%d\t%d\t%s\n", 
+				tpoints, rating, terrors, test_set[i].name);
 
-	}
+		}
     }
 
     printf("Total points: %.0f/%.0f\n", points, max_points);
@@ -483,14 +483,14 @@ static int get_num_val(char *sval, unsigned *valp) {
 	}
     }
     if (isfloat) {
-	float fval = strtof(sval, &endp);
+	float fval = strtof(sval, &endp); // string to float 
 	if (!*endp) {
 	    *valp = *(unsigned *) &fval;
 	    return 1;
 	}
 	return 0;
     } else {
-	long long int llval = strtoll(sval, &endp, 0);
+	long long int llval = strtoll(sval, &endp, 0); // string to long long 
 	long long int upperbits = llval >> 31;
 	/* will give -1 for negative, 0 or 1 for positive */
 	if (!*valp && (upperbits == 0 || upperbits == -1 || upperbits == 1)) {
@@ -566,7 +566,7 @@ int main(int argc, char *argv[])
 	    }
 	    break;
 	case 'T': /* Set timeout limit */
-	    timeout_limit = atoi(optarg);
+	    timeout_limit = atoi(optarg); // string to int
 	    break;
 	default:
 	    usage(argv[0]);
