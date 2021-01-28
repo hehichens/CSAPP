@@ -3,7 +3,7 @@ import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--add", help="add file path or dir", default="./*")
-parser.add_argument("--comment", help="comment", default=":fire: update")
+parser.add_argument("--comment", help="comment", default=":fire:update")
 args = parser.parse_args()
 
 if __name__ == "__main__":
