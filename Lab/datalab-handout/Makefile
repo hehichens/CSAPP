@@ -1,8 +1,9 @@
 #
 # Makefile that builds btest and other helper programs for the CS:APP data lab
-# 
+# -m32 is for 32bit platform
+# https://stackoverflow.com/questions/54082459/fatal-error-bits-libc-header-start-h-no-such-file-or-directory-while-compili/54082790
 CC = gcc
-CFLAGS = -O -Wall -m32
+CFLAGS = -O -Wall 
 LIBS = -lm
 
 all: btest fshow ishow
