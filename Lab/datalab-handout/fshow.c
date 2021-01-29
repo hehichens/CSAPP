@@ -87,20 +87,19 @@ static int get_num_val(char *sval, unsigned *valp) {
   int i;
   for (i = 0; sval[i]; i++) {
     switch (sval[i]) {
-    case 'x':
-    case 'X':
-      ishex = 1;
-      break;
-    case 'e':
-    case 'E':
-      if (!ishex)
-	isfloat = 1;
-      break;
-    case '.':
-      isfloat = 1;
-      break;
-    default:
-      break;
+      case 'x':
+      case 'X':
+        ishex = 1;
+        break;
+      case 'e':
+      case 'E':
+        if (!ishex) isfloat = 1;
+        break;
+      case '.':
+        isfloat = 1;
+        break;
+      default:
+        break;
     }
   }
   if (isfloat) {
@@ -110,7 +109,8 @@ static int get_num_val(char *sval, unsigned *valp) {
       return 1;
     }
     return 0;
-  } else {
+  } 
+  else {
     long long int llval = strtoll(sval, &endp, 0);
     long long int upperbits = llval >> 31;
     /* will give -1 for negative, 0 or 1 for positive */

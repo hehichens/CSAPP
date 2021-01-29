@@ -530,50 +530,50 @@ int main(int argc, char *argv[])
     /* parse command line args */
     while ((c = getopt(argc, argv, "hgf:r:T:1:2:3:")) != -1)
         switch (c) {
-        case 'h': /* help */
-	    usage(argv[0]);
-	    break;
-	case 'g': /* grading option for autograder */
-	    grade = 1;
-	    break;
-	case 'f': /* test only one function */
-	    test_fname = strdup(optarg);
-	    break;
-	case 'r': /* set global rating for each problem */
-	    global_rating = atoi(optarg);
-	    if (global_rating < 0)
-		usage(argv[0]);
-	    break;
-	case '1': /* Get first argument */
-	    has_arg[0] = get_num_val(optarg, &argval[0]);
-	    if (!has_arg[0]) {
-		printf("Bad argument '%s'\n", optarg);
-		exit(0);
-	    }
-	    break;
-	case '2': /* Get first argument */
-	    has_arg[1] = get_num_val(optarg, &argval[1]);
-	    if (!has_arg[1]) {
-		printf("Bad argument '%s'\n", optarg);
-		exit(0);
-	    }
-	    break;
-	case '3': /* Get first argument */
-	    has_arg[2] = get_num_val(optarg, &argval[2]);
-	    if (!has_arg[2]) {
-		printf("Bad argument '%s'\n", optarg);
-		exit(0);
-	    }
-	    break;
-	case 'T': /* Set timeout limit */
-	    timeout_limit = atoi(optarg); // string to int
-	    break;
-	default:
-	    usage(argv[0]);
-	}
+			case 'h': /* help */
+				usage(argv[0]);
+				break;
+			case 'g': /* grading option for autograder */
+				grade = 1;
+				break;
+			case 'f': /* test only one function */
+				test_fname = strdup(optarg);
+				break;
+			case 'r': /* set global rating for each problem */
+				global_rating = atoi(optarg);
+				if (global_rating < 0)
+				usage(argv[0]);
+				break;
+			case '1': /* Get first argument */
+				has_arg[0] = get_num_val(optarg, &argval[0]);
+				if (!has_arg[0]) {
+				printf("Bad argument '%s'\n", optarg);
+				exit(0);
+				}
+				break;
+			case '2': /* Get first argument */
+				has_arg[1] = get_num_val(optarg, &argval[1]);
+				if (!has_arg[1]) {
+				printf("Bad argument '%s'\n", optarg);
+				exit(0);
+				}
+				break;
+			case '3': /* Get first argument */
+				has_arg[2] = get_num_val(optarg, &argval[2]);
+				if (!has_arg[2]) {
+				printf("Bad argument '%s'\n", optarg);
+				exit(0);
+				}
+				break;
+			case 'T': /* Set timeout limit */
+				timeout_limit = atoi(optarg); // string to int
+				break;
+			default:
+				usage(argv[0]);
+		}
 
-    if (timeout_limit > 0) {
-	Signal(SIGALRM, timeout_handler);
+		if (timeout_limit > 0) {
+		Signal(SIGALRM, timeout_handler);
     }
 
     /* test each function */
