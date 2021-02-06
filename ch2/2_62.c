@@ -9,7 +9,7 @@ int int_shifts_are_arithmetic(int x){
 }
 
 int main(){
-    int num = ~0; // x0ffffffff
+    int num = ~0; // 0xffffffff
     if(int_shifts_are_arithmetic(num))
         printf("Yes!\n");
     else
